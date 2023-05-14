@@ -1,4 +1,4 @@
-// The file contains classes for system ui
+// The file contains functionality for system ui
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
