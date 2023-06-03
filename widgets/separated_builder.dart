@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 class SeparatedBuilder extends StatelessWidget {
   const SeparatedBuilder({
     required Widget Function(int index) builder,
-    required int itemCount,
     required double separatedValue,
+    required int itemCount,
     Axis direction = Axis.vertical,
     Key? key,
   })  : _builder = builder,
-        _itemCount = itemCount,
         _separatedValue = separatedValue,
+        _itemCount = itemCount,
         _direction = direction,
         super(key: key);
 
   final Widget Function(int index) _builder;
-  final int _itemCount;
   final double _separatedValue;
+  final int _itemCount;
   final Axis _direction;
 
   Widget _buildGap(double value) {
@@ -28,11 +28,10 @@ class SeparatedBuilder extends StatelessWidget {
     final List<Widget> widgets = [];
 
     for (int index = 0; index < _itemCount; index++) {
-      // last item
-      if (index == _itemCount - 1) {
-        widgets.add(_builder(index));
-      } else {
-        widgets.addAll([_builder(index), _buildGap(_separatedValue)]);
+      widgets.add(_builder(index));
+
+      if (index != _itemCount - 1) {
+        widgets.add(_buildGap(_separatedValue));
       }
     }
 
